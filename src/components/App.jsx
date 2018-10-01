@@ -21,11 +21,33 @@ class App extends React.Component{
     this.handleUserLogin = this.handleUserLogin.bind(this);
   }
 
+
   handleUserLogin(username,password)
   {
     console.log('User has Logged in');
     console.log(username);
     console.log(password);
+  }
+
+  componentDidMount() {
+    let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testSqlQuery';
+
+
+    fetch(apiUrl, {
+      method: 'get',
+      mode: 'no-cors',
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+        }
+      );
+
+    // $.get( apiUrl, function( data ) {
+    //   console.log(data);
+    //   console.log('Load was performed.');
+    // });
   }
 
   render(){
