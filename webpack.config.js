@@ -14,6 +14,13 @@ module.exports = {
     resolve(__dirname, 'src') + '/index.jsx'
   ],
 
+  // node: {
+  //   fs: 'empty',
+  //   net: 'empty',
+  //   tls: 'empty',
+  //   dns: 'empty'
+  // },
+
   output: {
     filename: 'app.bundle.js',
     path: resolve(__dirname, 'build'),
@@ -31,9 +38,16 @@ module.exports = {
     contentBase: resolve(__dirname, 'build'),
     publicPath: '/',
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
+    proxy: {
+      '/default': {
+        target: 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/',
+        secure: false,
+        changeOrigin: true
+      }
+
     }
   },
 

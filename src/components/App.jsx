@@ -30,24 +30,26 @@ class App extends React.Component{
   }
 
   componentDidMount() {
-    let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testSqlQuery';
+    console.log('test');
+    this.fetchHello();
 
+  }
 
-    fetch(apiUrl, {
+  fetchHello()
+  {
+    // let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testSqlQuery';
+    let apiUrl = '/default/testSqlQuery';
+
+    return fetch(apiUrl,{
       method: 'get',
-      mode: 'no-cors',
-    })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-        }
-      );
-
-    // $.get( apiUrl, function( data ) {
-    //   console.log(data);
-    //   console.log('Load was performed.');
-    // });
+      mode: 'cors',
+    }).then(
+      function(response) {
+        return response.json();
+      }
+    ).then(function(body) {
+      console.log('API RESPONSE:', body);
+    });
   }
 
   render(){
