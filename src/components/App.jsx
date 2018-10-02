@@ -38,7 +38,7 @@ class App extends React.Component{
   fetchHello()
   {
     // let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testSqlQuery';
-    let apiUrl = '/default/testSqlQuery';
+    let apiUrl = '/default/testSqlQuery?testname=0';
 
     return fetch(apiUrl,{
       method: 'get',
