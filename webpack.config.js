@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   //development, production or none
-  mode: 'development',
+  mode: 'production',
 
   entry: [
     'react-hot-loader/patch',
@@ -13,13 +13,6 @@ module.exports = {
     'webpack/hot/only-dev-server',
     resolve(__dirname, 'src') + '/index.jsx'
   ],
-
-  // node: {
-  //   fs: 'empty',
-  //   net: 'empty',
-  //   tls: 'empty',
-  //   dns: 'empty'
-  // },
 
   output: {
     filename: 'app.bundle.js',
@@ -31,7 +24,7 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
 
-  devtool: 'eval-source-map',
+  // devtool: 'eval-source-map',
 
   devServer: {
     hot: true,
@@ -65,7 +58,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template:'template.ejs',
       appMountId: 'react-app-root',
-      title: 'groups-static',
+      title: 'groups',
       filename: resolve(__dirname, 'build', 'index.html'),
     }),
   ],

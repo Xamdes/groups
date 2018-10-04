@@ -30,7 +30,6 @@ class App extends React.Component{
   }
 
   componentDidMount() {
-    console.log('test');
     this.fetchHello();
 
   }
