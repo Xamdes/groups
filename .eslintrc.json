@@ -13,6 +13,9 @@
     "amd": true,
     "node": true
   },
+  "plugins": [
+    "react"
+  ],
   "extends": ["eslint:recommended",
     "plugin:react/recommended"
   ],
@@ -23,9 +26,6 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
   "rules": {
     "react/jsx-handler-names": 2,
     "react/require-render-return": 2,

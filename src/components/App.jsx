@@ -29,26 +29,12 @@ class App extends React.Component{
     console.log(password);
   }
 
-  componentDidMount() {
-    this.fetchHello();
-
-  }
-
-  fetchHello()
+  componentDidMount()
   {
-    // let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testSqlQuery';
-    let apiUrl = '/default/testSqlQuery?testname=0';
+    let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testsqlquery?testname=0';
+    // let apiUrl = '/default/testSqlQuery?testname=0';
+    fetchData(apiUrl);
 
-    return fetch(apiUrl,{
-      method: 'get',
-      mode: 'cors',
-    }).then(
-      function(response) {
-        return response.json();
-      }
-    ).then(function(body) {
-      console.log('API RESPONSE:', body);
-    });
   }
 
   render(){
@@ -86,3 +72,20 @@ const HeaderStyle = styled.div`
 font-size: 1.2em;
 text-align: center;
 `;
+
+function fetchData(url = '')
+{
+  return fetch(url,{
+    method: 'get',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(function(response)
+  {
+    return response.json();
+  }).then(function(body)
+  {
+    console.log(body);
+  });
+}
