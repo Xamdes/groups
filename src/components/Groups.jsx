@@ -11,7 +11,7 @@ import Group from './Group';
 //Right side should contain list of groups to select from
 //Details Groups name and a Public/Private descriptdor
 
-function Groups(){
+function Groups(props){
   return (
     <Main>
       <Title>Group [current group selected]</Title>
@@ -24,11 +24,15 @@ function Groups(){
               key={group.id}/>
           )}
         </div>
-        <div className="col-md-9"><ChatList/></div>
+        <div className="col-md-9"><ChatList chatList={props.chatList}/></div>
       </div>
     </Main>
   );
 }
+
+Groups.propTypes = {
+  chatList: PropTypes.array,
+};
 
 export default Groups;
 

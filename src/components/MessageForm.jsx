@@ -14,8 +14,16 @@ function MessageForm(){
   function handleNewMessageFormSubmission(event)
   {
     event.preventDefault();
-    // props.onNewMessageCreation({message: _message.value, , id: v4()});
-    console.log(_message.value);
+    let apiUrl = '/default/SendMessage?message='+_message.value;
+
+    fetch(apiUrl,{
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    // console.log(_message.value);
     _message.value = '';
   }
 

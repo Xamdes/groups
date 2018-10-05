@@ -33,25 +33,23 @@ class App extends React.Component{
   {
     // let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testsqlquery?testname=0';
     let apiUrl = '/default/testsqlquery?testname=0';
-    setInterval(() => {console.log(this.state.masterChatList);},5000);
-    let that = this;
+    const fetchInterval = 2 * 1000;
+    // setInterval(() => {console.log(this.state.masterChatList);},5000);
 
-    fetch(apiUrl,{
-      method: 'get',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-      return response.json()}).then((body)=>{
+    setInterval(() => {
+      fetch(apiUrl,{
+        method: 'get',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => {
+        return response.json();}).then((body)=>{
         this.setState({
           masterChatList: body
         });
-        console.log(body);
-      return body;
-    });
-    // console.log(test);
-
+      });
+    },fetchInterval);
   }
 
   render(){
@@ -63,7 +61,7 @@ class App extends React.Component{
           <Route exact path='/'/>
           <Route exact path='/login' render={()=><Login onUserLogin={this.handleUserLogin}/>}/>
           <Route exact path='/contacts' render={()=><Contacts/>}/>
-          <Route exact path='/groups' render={()=><Groups/>}/>
+          <Route exact path='/groups' render={()=><Groups chatList={this.state.masterChatList}/>}/>
           <Route component={Error404} />
         </Switch>
       </Main>

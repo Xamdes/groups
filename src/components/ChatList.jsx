@@ -9,17 +9,20 @@ import Chat from './Chat';
 
 //List chats by chat names pass name and uuid
 
-function ChatList(){
+function ChatList(props){
+  // console.log(props);
   return (
     <Main>
       <h1>Current Discussions</h1>
       <h2>Chat List One</h2>
-      <Chat messageList={chatOne}/>
-      <h2>Chat List Two</h2>
-      <Chat messageList={chatTwo}/>
+      <Chat messageList={props.chatList}/>
     </Main>
   );
 }
+
+ChatList.propTypes = {
+  chatList: PropTypes.array,
+};
 
 export default ChatList;
 
@@ -29,5 +32,5 @@ font-family: sans-serif;
 color: white;
 `;
 
-const chatOne = [{message:'Hi'},{message:'Yay'},{message:'Test One'}];
-const chatTwo = [{message:'Hi'},{message:'Yay'},{message:'Test Two'}];
+// const chatOne = [{message:'Hi'},{message:'Yay'},{message:'Test One'}];
+// const chatTwo = [{message:'Hi'},{message:'Yay'},{message:'Test Two'}];
