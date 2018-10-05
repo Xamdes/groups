@@ -16,7 +16,7 @@ class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      // masterChatList: []
+      masterChatList: []
     };
     this.handleUserLogin = this.handleUserLogin.bind(this);
   }
@@ -31,9 +31,26 @@ class App extends React.Component{
 
   componentDidMount()
   {
-    let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testsqlquery?testname=0';
-    // let apiUrl = '/default/testSqlQuery?testname=0';
-    fetchData(apiUrl);
+    // let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testsqlquery?testname=0';
+    let apiUrl = '/default/testsqlquery?testname=0';
+    setInterval(() => {console.log(this.state.masterChatList);},5000);
+    let that = this;
+
+    fetch(apiUrl,{
+      method: 'get',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      return response.json()}).then((body)=>{
+        this.setState({
+          masterChatList: body
+        });
+        console.log(body);
+      return body;
+    });
+    // console.log(test);
 
   }
 
@@ -72,20 +89,3 @@ const HeaderStyle = styled.div`
 font-size: 1.2em;
 text-align: center;
 `;
-
-function fetchData(url = '')
-{
-  return fetch(url,{
-    method: 'get',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then(function(response)
-  {
-    return response.json();
-  }).then(function(body)
-  {
-    console.log(body);
-  });
-}

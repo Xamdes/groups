@@ -5,12 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   //development, production or none
-  mode: 'production',
+  mode: 'development',
 
   entry: [
     'react-hot-loader/patch',
-    // 'webpack-dev-server/client?http://localhost:8080',
-    // 'webpack/hot/only-dev-server',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
     resolve(__dirname, 'src') + '/index.jsx'
   ],
 
@@ -24,7 +24,7 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
 
-  // devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
 
   devServer: {
     hot: true,
