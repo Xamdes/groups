@@ -5,6 +5,7 @@
 * <MessageForm/>
 */
 import styled from 'styled-components';
+import Api from '../constants/Api';
 // import { v4 } from 'uuid';
 
 function MessageForm(){
@@ -14,7 +15,7 @@ function MessageForm(){
   function handleNewMessageFormSubmission(event)
   {
     event.preventDefault();
-    let apiUrl = '/default/SendMessage?message='+encodeURIComponent(_message.value);
+    let apiUrl = Api.send+encodeURIComponent(_message.value);
 
     fetch(apiUrl,{
       method: 'post',

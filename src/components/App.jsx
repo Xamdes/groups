@@ -11,6 +11,7 @@ import Header from './Header';
 import Login from './Login';
 import Contacts from './Contacts';
 import Groups from './Groups';
+import Api from '../constants/Api';
 
 class App extends React.Component{
   constructor(props) {
@@ -31,13 +32,12 @@ class App extends React.Component{
 
   componentDidMount()
   {
-    // let apiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/default/testsqlquery?testname=0';
-    let apiUrl = '/default/testsqlquery?testname=0';
+
     const fetchInterval = 2 * 1000;
     // setInterval(() => {console.log(this.state.masterChatList);},5000);
 
     setInterval(() => {
-      fetch(apiUrl,{
+      fetch(Api.receive,{
         method: 'get',
         mode: 'cors',
         headers: {
