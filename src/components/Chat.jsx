@@ -15,7 +15,7 @@ function Chat(props){
   return (
     <Main>
       {props.messageList.map((message,i) =>
-        <Message message={message.message}
+        <Message message={decodeURIComponent(message.message)}
           key={i}/>
       )}
       <MessageForm/>

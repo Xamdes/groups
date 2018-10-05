@@ -14,7 +14,7 @@ function MessageForm(){
   function handleNewMessageFormSubmission(event)
   {
     event.preventDefault();
-    let apiUrl = '/default/SendMessage?message='+_message.value;
+    let apiUrl = '/default/SendMessage?message='+encodeURIComponent(_message.value);
 
     fetch(apiUrl,{
       method: 'post',

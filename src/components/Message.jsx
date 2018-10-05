@@ -7,6 +7,7 @@
 import styled from 'styled-components';
 
 function Message(props){
+  console.log(props);
   return (
     <Main>
       <p>{props.message}</p>
@@ -21,5 +22,5 @@ Message.propTypes = {
 export default Message;
 
 const Main = styled.div`
-
+white-space: pre-wrap;
 `;
