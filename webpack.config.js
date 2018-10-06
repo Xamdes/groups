@@ -2,6 +2,8 @@
 const webpack = require('webpack');
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 const configApiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com';
 
@@ -23,6 +25,26 @@ module.exports = [{
 
   resolve: {
     extensions: ['.js', '.jsx']
+  },
+
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: true,
+        uglifyOptions: {
+          drop_console: true,
+          keep_infinity: true,
+          mangle: true,
+          passes: 5,
+          warnings: false
+        }
+      })
+    ]
+  },
+
+  performance: {
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
   },
 
   plugins: [
