@@ -3,14 +3,13 @@ const webpack = require('webpack');
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = [{
+  name: 'aws-s3',
   //development, production or none
-  mode: 'development',
+  mode: 'production',
 
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
     resolve(__dirname, 'src') + '/index.jsx'
   ],
 
@@ -24,34 +23,16 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
 
-  devtool: 'eval-source-map',
-
-  devServer: {
-    hot: true,
-    contentBase: resolve(__dirname, 'build'),
-    publicPath: '/',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-    },
-    proxy: {
-      '/default': {
-        target: 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/',
-        secure: false,
-        changeOrigin: true
-      }
-
-    }
-  },
-
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      Popper: 'popper.js',
       React: 'react',
       ReactDOM: 'react-dom',
       PropTypes: 'prop-types'
+    }),
+    new webpack.DefinePlugin({
+      APINAME: JSON.stringify('https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com')
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -96,4 +77,102 @@ module.exports = {
       }
     ],
   }
-};
+
+},{
+  name: 'dev-server',
+  //development, production or none
+  mode: 'development',
+
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    resolve(__dirname, 'src') + '/index.jsx'
+  ],
+
+  output: {
+    filename: 'app.bundle.js',
+    path: resolve(__dirname, 'build'),
+    publicPath: ''
+  },
+
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+
+  devtool: 'eval-source-map',
+
+  devServer: {
+    hot: true,
+    contentBase: resolve(__dirname, 'build'),
+    publicPath: '/',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
+    proxy: {
+      '/default': {
+        target: 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/',
+        secure: false,
+        changeOrigin: true
+      }
+
+    }
+  },
+
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      React: 'react',
+      ReactDOM: 'react-dom',
+      PropTypes: 'prop-types'
+    }),
+    new webpack.DefinePlugin({
+      APINAME: JSON.stringify('')
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      template:'template.ejs',
+      appMountId: 'react-app-root',
+      title: 'groups',
+      filename: resolve(__dirname, 'build', 'index.html'),
+    }),
+  ],
+
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        options: {
+          emitWarning: true,
+          configFile: './.eslintrc.json'
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: [
+            '@babel/preset-react',
+            '@babel/preset-env'
+          ],
+          plugins: [
+            'react-hot-loader/babel',
+            'styled-jsx/babel'
+          ]
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ],
+  }
+
+}];

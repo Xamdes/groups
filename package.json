@@ -4,15 +4,15 @@
   "description": "Epicodus Capstone Project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config-name aws-s3",
     "commit": "bash ./bin/commit.sh",
     "fresh": "npm install && webpack",
     "gen": "bash ./bin/generate-component.sh",
     "git-config": "bash ./bin/git-config.sh",
     "lint": "eslint \"src/**\" \"src/**/**\" || true",
     "lint-fix": "eslint \"src/**\" \"src/**/**\" --fix || true",
-    "start": "webpack-dev-server",
-    "start-web": "webpack-dev-server --open",
+    "start": "webpack-dev-server --config-name dev-server",
+    "start-web": "webpack-dev-server --config-name dev-server --open",
     "web": "open http://localhost:8080",
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server"

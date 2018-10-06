@@ -35,6 +35,8 @@ class App extends React.Component{
 
     const fetchInterval = 2 * 1000;
     // setInterval(() => {console.log(this.state.masterChatList);},5000);
+    console.log(APINAME);
+    console.log(Api.receive);
 
     setInterval(() => {
       fetch(Api.receive,{
