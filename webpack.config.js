@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const configApiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com';
+
 module.exports = [{
   name: 'aws-s3',
   //development, production or none
@@ -32,7 +34,7 @@ module.exports = [{
       PropTypes: 'prop-types'
     }),
     new webpack.DefinePlugin({
-      APINAME: JSON.stringify('https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com')
+      APINAME: JSON.stringify(configApiUrl)
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -112,7 +114,7 @@ module.exports = [{
     },
     proxy: {
       '/default': {
-        target: 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com/',
+        target: configApiUrl,
         secure: false,
         changeOrigin: true
       }

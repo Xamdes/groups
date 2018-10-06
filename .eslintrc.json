@@ -8,6 +8,11 @@
     "PropTypes": true,
     "APINAME": true
   },
+  "settings":{
+    "react":{
+      "version": "15.5.4"
+    }
+  },
   "env": {
     "browser": true,
     "es6": true,
