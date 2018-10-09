@@ -6,7 +6,7 @@
 // };
 
 const Api = {
-  receive: APINAME+'/default/testsqlquery?testname=0',
+  receive: APINAME+'/default/testsqlquery?conversation=0',
   send: APINAME+'/default/SendMessage?message='
 };
 
