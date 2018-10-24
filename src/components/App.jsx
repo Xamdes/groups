@@ -38,19 +38,28 @@ class App extends React.Component{
     console.log(APINAME);
     console.log(Api.receive);
 
-    setInterval(() => {
-      fetch(Api.receive,{
-        method: 'get',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((response) => {
-        return response.json();}).then((body)=>{
+    setInterval(async () => {
+      try {
+        const response = await fetch(Api
+          .receive, {
+          method: 'get',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const body = await response.json();
+
         this.setState({
           masterChatList: body
         });
-      });
+      } catch (error) {
+        console.error(error);
+        throw error;
+        // call another funciton
+        // resolve success
+      }
     },fetchInterval);
   }
 

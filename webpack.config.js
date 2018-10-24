@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+require('@babel/polyfill');
 
 
 const configApiUrl = 'https://p5e9u9fizk.execute-api.us-east-2.amazonaws.com';
@@ -13,6 +14,7 @@ module.exports = [{
   mode: 'production',
 
   entry: [
+    '@babel/polyfill', './src/index.jsx',
     'react-hot-loader/patch',
     resolve(__dirname, 'src') + '/index.jsx'
   ],
@@ -107,7 +109,8 @@ module.exports = [{
   //development, production or none
   mode: 'development',
 
-  entry: [
+    entry: [
+    '@babel/polyfill', './src/index.jsx',
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
