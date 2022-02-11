@@ -20,7 +20,7 @@
   "author": "Steven Colburn",
   "license": "MIT",
   "dependencies": {
-    "ajv": "^6.5.3",
+    "ajv": "^6.12.3",
     "bootstrap": "^4.1.3",
     "@babel/polyfill": "^7.0.0",
     "fetch": "^1.1.0",
